@@ -57,3 +57,7 @@ This reinforced that secure infrastructure starts with network design, not tooli
     - Dedicated NSG
   - External Access
     - SSH (TCP 22) permitted from the internet to the application VM only
+
+  <img width="1658" height="2540" alt="Network_Diagram" src="https://github.com/user-attachments/assets/bf250a85-d9cd-46fe-9ec9-dc77294881b8" />
+
+
