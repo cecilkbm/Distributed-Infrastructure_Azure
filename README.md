@@ -1,48 +1,59 @@
-# 🌐 Azure Networking Lab: Multi-Region Office Connectivity
+# ☁️ Distributed Infrastructure in Azure: Secure App & Data Segmentation
 
-A hands-on Azure networking lab focused on designing and implementing secure, multi-region connectivity that simulates an on-premises enterprise environment running in the cloud.
+A hands-on Azure project demonstrating distributed infrastructure design, focused on network segmentation, secure access, and separation of application and data layers within a virtual network.
 
-This lab models how organizations with multiple physical offices can extend and interconnect their networks in Azure while maintaining secure, reliable communication across regions.
+This project models how real-world environments isolate workloads while maintaining controlled connectivity between tiers.
 
 ## ✨ Technologies
   - Microsoft Azure
-  - Azure Virtual Networks (VNets)
-  - VNet Peering
-  - Azure Networking & Routing concepts
-  - Multi-region architecture (East US & West US)
+  - Azure Virtual Network (VNet)
+  - Subnets (Application & Data tiers)
+  - Network Security Groups (NSGs)
+  - Azure Virtual Machines
+  - Azure MySQL Flexible Server
+  - SSH (TCP Port 22)
 
 ## 🚀 Features
-  - Simulated on-premises infrastructure hosted in Azure
-  - Three interconnected data centers across two Azure regions:
-    - New York (East US)
-    - Boston (East US)
-    - Seattle (West US)
-  - Mesh-style network connectivity between offices
-  - Secure inter-office communication design
-  - Focus on networking architecture rather than resource sprawl
+  - Distributed application and data tiers within a single Azure VNet
+  - Logical network segmentation using dedicated subnets:
+    - App Subnet – Application workloads
+    - Data Subnet – Database services
+  - Secure VM access via SSH from the internet
+  - Network Security Groups applied at multiple layers
+  - Private connectivity between application and database tiers
+  - Persistent storage attached to compute resources
 
 ## 🧠 The Process
-This lab started with a realistic enterprise scenario:
-multiple offices, geographically separated, that must communicate as if they were on the same wide-area network.
 
-Instead of focusing on individual Azure resources, the goal was to understand how networking decisions shape reliability, performance, and security in a multi-region environment.
+This project was designed to answer a common infrastructure question:
+“How do you securely separate application and data layers in the cloud?”
 
-By designing connectivity between East US and West US regions, I explored how Azure networking abstractions can replicate traditional on-premises WAN designs while offering cloud-native flexibility.
+Using Azure’s networking primitives, I built a distributed layout where compute, storage, and database services are isolated by subnet boundaries and protected with security rules.
 
-The emphasis was on connectivity, routing, and trust boundaries, not just clicking through the portal. 
+Rather than exposing everything publicly, access is intentionally limited:
+- External access is restricted to SSH
+- Database resources remain isolated in a dedicated data subnet
+- Traffic flow is controlled through NSGs instead of implicit trust
+The emphasis was on defense-in-depth and least privilege networking, not just deploying services.
 
 ## 🧪 What I Learned
-How to design multi-region network topologies in Azure
-  - The tradeoffs between regional latency and connectivity
-  - How mesh-style networking improves redundancy
-  - Why network architecture should be planned before deploying workloads
-  - How on-premises concepts translate into cloud-native designs
-This lab reinforced that cloud networking is still networking — just with different primitives.
+  - How to design segmented network architectures in Azure
+  - Why separating app and data tiers reduces blast radius
+  - Practical use of Network Security Groups for traffic control
+  - How cloud networking mirrors traditional on-prem designs
+  - The importance of planning network boundaries before deploying workloads
+This reinforced that secure infrastructure starts with network design, not tooling.
 
 ## 🧭 Architecture Overview
-  - Two offices deployed in East US to represent regional proximity
-  - One office deployed in West US to represent cross-country connectivity
-  - All offices connected in a mesh topology to allow direct communication
-  - Secure routing paths established between all locations
-
-<img width="1658" height="2540" alt="Network_Diagram" src="https://github.com/user-attachments/assets/220d2a9b-d733-4598-8eeb-6ac388288180" />
+  - Virtual Network hosting all resources
+  - App Subnet
+    - Linux VM (devapp_VM)
+    - Attached disks for persistence
+    - Network Interface (devNIC)
+    - NSG controlling inbound/outbound traffic
+  - Data Subnet
+    - Azure MySQL Flexible Server
+    - Restricted access from application tier only
+    - Dedicated NSG
+  - External Access
+    - SSH (TCP 22) permitted from the internet to the application VM only
