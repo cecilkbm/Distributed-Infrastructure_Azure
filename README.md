@@ -1,8 +1,8 @@
 # ☁️ Distributed Infrastructure in Azure: Secure App & Data Segmentation
-
 A hands-on Azure project demonstrating distributed infrastructure design, focused on network segmentation, secure access, and separation of application and data layers within a virtual network.
-
 This project models how real-world environments isolate workloads while maintaining controlled connectivity between tiers.
+
+---
 
 ## ✨ Technologies
   - Microsoft Azure
@@ -59,5 +59,6 @@ This reinforced that secure infrastructure starts with network design, not tooli
     - SSH (TCP 22) permitted from the internet to the application VM only
 
   <img width="1658" height="2540" alt="Network_Diagram" src="https://github.com/user-attachments/assets/bf250a85-d9cd-46fe-9ec9-dc77294881b8" />
+
 
 
